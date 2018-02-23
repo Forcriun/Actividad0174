@@ -151,7 +151,6 @@ public class PersonaTest
         
     }
 
-/**
     @Test
     public void TestCommit03()
     {
@@ -165,5 +164,4 @@ public class PersonaTest
         assertEquals(2000, persona1.comer(comida4));
         assertEquals("Cocido", persona1.getAlimentoMasCaloricoConsumido());
     }
-    */
 }

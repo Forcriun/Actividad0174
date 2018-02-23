@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Clase que simula una persona capaz de ingerir alimentos.
  *
@@ -20,6 +22,8 @@ public class Persona
     private int caloriasIngeridas;
     // Las calorias ingeridas por la persona
     private int metabolismoBasal;
+    // La lista de comidas ingeridas por la persona
+    private ArrayList<Comida> comidasIngeridas;
 
     /**
      * Constructor de la clase Persona
@@ -37,6 +41,7 @@ public class Persona
         this.altura=altura;
         this.edad=edad;
         caloriasIngeridas = 0;
+        comidasIngeridas = new ArrayList<>();
         if(esHombre){
             metabolismoBasal = (10*peso)+(6*altura)+(5*edad)+5;
         }
@@ -59,6 +64,7 @@ public class Persona
         if(caloriasIngeridas <= metabolismoBasal){
             caloriasComida = comida.getCalorias();
             caloriasIngeridas += caloriasComida;
+            comidasIngeridas.add(comida);
         }
         return caloriasComida;
     }
@@ -83,7 +89,6 @@ public class Persona
      * Si la pregunta contiene el nombre de la persona o esta ha sobrepasado su
      * metabolismo basal contesta con la misma pregunta en mayusculas
      *
-     *
      * @param  pregunta  La pregunta que se le hace a la persona
      * @return    La respuesta de la persona
      */
@@ -98,7 +103,43 @@ public class Persona
             respuesta = (pregunta.length()%3 == 0) ? "SI" : "NO" ;
         }
         System.out.println(respuesta);
-        
+
         return respuesta;
+    }
+
+    /**
+     * Metodo que devuelve y muestra por pantalla el nombre de la comida mas calorica ingerida por la
+     * persona hasta el momento. Si no ha ingerido nada avisa por pantalla.
+     *
+     * @return    El noombre de la comida mas calorica ingerida por la persona.
+     * Si no ha comido nada devuelve null
+     */
+    public String getAlimentoMasCaloricoConsumido()
+    {
+        String aDevolver = null;
+
+        if(comidasIngeridas.size() > 0){
+            Comida alimentoMasCalorico = null;
+            int posicionalimentoMasCalorico = -1;
+            int referenciaCalorica = 0;
+
+            int posicion = 0;
+            for (Comida comida : comidasIngeridas){
+                if (comida.getCalorias() >= referenciaCalorica){
+                    referenciaCalorica = comida.getCalorias();
+                    alimentoMasCalorico = comida;
+                    posicionalimentoMasCalorico = posicion;
+                }
+                posicion++;
+            }        
+
+            System.out.println(alimentoMasCalorico);
+            aDevolver = alimentoMasCalorico.getNombre();        
+        }
+        else{
+            System.out.println(nombre + " no ha ingerido ningun alimento.");
+        }
+
+        return aDevolver;
     }
 }
