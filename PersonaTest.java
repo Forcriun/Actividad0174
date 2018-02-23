@@ -89,7 +89,7 @@ public class PersonaTest
         assertEquals(-1, persona2.comer(comida2));
         assertEquals(2269, persona2.getCaloriasIngeridas());
     }
-/**
+    
     @Test
     public void TestCommit02()
     {
@@ -151,6 +151,7 @@ public class PersonaTest
         
     }
 
+/**
     @Test
     public void TestCommit03()
     {

@@ -72,4 +72,33 @@ public class Persona
     {
         return caloriasIngeridas;
     }
+
+    /**
+     * Metodo que simula una pregunta a la persona con respuesta en funcion de
+     * su ingesta de calorias hasta el momento. 
+     * 
+     * Si no ha sobrepasado su metabolismo basal,
+     * contesta "SI" o "NO" dependiendo de si la respuesta es divisible por 3.
+     * 
+     * Si la pregunta contiene el nombre de la persona o esta ha sobrepasado su
+     * metabolismo basal contesta con la misma pregunta en mayusculas
+     *
+     *
+     * @param  pregunta  La pregunta que se le hace a la persona
+     * @return    La respuesta de la persona
+     */
+    public String contestar(String pregunta)
+    {
+        String respuesta = "";
+
+        if(pregunta.contains(nombre) || getCaloriasIngeridas() > metabolismoBasal){
+            respuesta = pregunta.toUpperCase();
+        }
+        else{
+            respuesta = (pregunta.length()%3 == 0) ? "SI" : "NO" ;
+        }
+        System.out.println(respuesta);
+        
+        return respuesta;
+    }
 }
